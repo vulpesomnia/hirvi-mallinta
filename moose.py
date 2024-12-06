@@ -6,8 +6,14 @@ class Moose(object.GameObject):# Korkeus, pituus, reviiri
         super().__init__()
         self.location = location
         self.height = height
-        self.length = territory
+        self.length = length
         self.territory = territory
+        self.time = 0
+        self.sprite = object.Sprite(pygame.Vector2(self.length*2, self.length), (255, 100, 0), self.location)
 
     def fixed_tick(self, dt):
-        self.location = self.location.lerp(settings.world_to_screen((0,0)), 0.02*dt)
+        self.time += dt
+        if self.time > 60:
+            self.location += pygame.Vector2(2 * settings.PIXELS_PER_METER, 0)
+            self.sprite.location = self.location
+            self.time = 0

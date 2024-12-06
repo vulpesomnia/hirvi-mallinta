@@ -1,5 +1,5 @@
 import pygame
-import settings, physics, rendering, camera, object, events
+import settings, physics, rendering, camera, object, events, moose
 from pygame.locals import *
 
 pygame.init()
@@ -16,7 +16,8 @@ TICK_SPEED = (1 / 60) #Fixed value do not touch!
 previous_frametime = pygame.time.get_ticks() 
 accumulated_frametime = 0
 
-test = object.Sprite(pygame.Vector2(50, 50), (255, 100, 0), pygame.Vector2(0, 0))
+
+test = moose.Moose(pygame.Vector2(0, 0), 10, 1.8 * settings.PIXELS_PER_METER, "a")
 
 events.setup_events()
 while True:
@@ -29,12 +30,10 @@ while True:
     previous_frametime = current_frametime
     events.event_listener()
     while accumulated_frametime > TICK_SPEED:
-        #physics.tick(1)
-    #   camera.update_position()
+        physics.tick(1)
         accumulated_frametime -= TICK_SPEED
     if accumulated_frametime > 0:
-        #   camera.update_position()
-        #physics.tick(accumulated_frametime / TICK_SPEED)
+        physics.tick(accumulated_frametime / TICK_SPEED)
         accumulated_frametime = 0
 
     #Possibly move camera position update to sync with physics update.
