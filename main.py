@@ -1,5 +1,5 @@
 import pygame
-import settings, physics, rendering, camera, object, events, moose, drone
+import settings, physics, rendering, camera, object, events, moose, drone, territory
 from pygame.locals import *
 
 pygame.init()
@@ -9,15 +9,13 @@ settings.screen = pygame.display.set_mode((settings.SCREEN_WIDTH,settings.SCREEN
 settings.rendering_frame = pygame.Surface((settings.SCREEN_WIDTH, settings.SCREEN_HEIGHT))
 game_clock = pygame.time.Clock()
 
-
 camera = camera.Camera()
 
 previous_frametime = pygame.time.get_ticks() 
 accumulated_frametime = 0
 
-
-test = moose.Moose(pygame.Vector2(0, 0), 10, 1.8 * settings.PIXELS_PER_METER, "a")
 drone = drone.Drone(50, 221 * settings.PIXELS_PER_METER)
+test = territory.Territory(pygame.Vector2(settings.SCREEN_WIDTH/-4, 0), 100 * settings.PIXELS_PER_METER, 100)
 
 events.setup_events()
 while True:
