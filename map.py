@@ -3,7 +3,7 @@ import pygame, random
 import settings, object, moose, territory
 
 territoryMin = 200
-territoryMax = 2000
+territoryMax = 500
 
 class Map():
     def __init__(self, height, width, mooses):
@@ -17,7 +17,7 @@ class Map():
             mooses -= mooseAmt
             success = False
             while not success:
-                territoryRadius = random.uniform(territoryMin, territoryMax)
+                territoryRadius = random.uniform(territoryMin*mooseAmt, territoryMax*mooseAmt)
                 xOffset = random.uniform(territoryRadius, width-territoryRadius)
                 yOffset = random.uniform(territoryRadius, height-territoryRadius)
                 position = pygame.Vector2(xOffset, yOffset)
