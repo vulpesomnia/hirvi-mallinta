@@ -7,6 +7,7 @@ class Sprite():
         settings.render_pool.append(self)
         self.color = color
         self.rect = pygame.Surface((size.x, size.y))
+        self.collisionBox = self.rect.get_rect()
         if len(color) == 4:
             self.rect.set_alpha(color[3])
         self.rect.fill(color)
