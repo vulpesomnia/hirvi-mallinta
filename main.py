@@ -12,7 +12,6 @@ game_clock = pygame.time.Clock()
 
 camera = camera.Camera()
 
-TICK_SPEED = (1 / 60) #Fixed value do not touch!
 previous_frametime = pygame.time.get_ticks() 
 accumulated_frametime = 0
 
@@ -29,11 +28,11 @@ while True:
     #Prepare for next frame by setting previous frametime's timestamp
     previous_frametime = current_frametime
     events.event_listener()
-    while accumulated_frametime > TICK_SPEED:
+    while accumulated_frametime > settings.TICK_SPEED:
         physics.tick(1)
-        accumulated_frametime -= TICK_SPEED
+        accumulated_frametime -=  settings.TICK_SPEED
     if accumulated_frametime > 0:
-        physics.tick(accumulated_frametime / TICK_SPEED)
+        physics.tick(accumulated_frametime /  settings.TICK_SPEED)
         accumulated_frametime = 0
 
     #Possibly move camera position update to sync with physics update.

@@ -10,6 +10,7 @@ SCREEN_RESIZE_FACTOR = 1
 PIXELS_PER_METER = 2 #Pixels per meter
 
 MAX_FPS = 60
+TICK_SPEED = (1 / 60) #Fixed value do not touch!
 
 WHITE = (255, 255 ,255)
 BLACK = (0, 0, 0)
