@@ -16,7 +16,7 @@ previous_frametime = pygame.time.get_ticks()
 accumulated_frametime = 0
 
 
-test = moose.Moose(pygame.Vector2(0, 0), 10, 1.8 * settings.PIXELS_PER_METER, "a", 0)
+test = moose.Moose(pygame.Vector2(0, 0), 10, 1.8 * settings.PIXELS_PER_METER, "a")
 drone = drone.Drone(pygame.Vector2(0, 0), 50, 221 * settings.PIXELS_PER_METER)
 
 events.setup_events()
