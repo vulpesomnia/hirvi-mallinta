@@ -1,5 +1,5 @@
 import pygame
-import settings, physics, rendering, camera, object, events, moose
+import settings, physics, rendering, camera, object, events, moose, drone
 from pygame.locals import *
 
 pygame.init()
@@ -17,6 +17,7 @@ accumulated_frametime = 0
 
 
 test = moose.Moose(pygame.Vector2(0, 0), 10, 1.8 * settings.PIXELS_PER_METER, "a")
+drone = drone.Drone(pygame.Vector2(0, 0), 50, 221 * settings.PIXELS_PER_METER)
 
 events.setup_events()
 while True:
