@@ -13,7 +13,7 @@ class Map():
         self.territories = []
         self.sprite = object.Sprite(pygame.Vector2(width, height), (0, 255, 126), pygame.Vector2(width/2, height/2)) 
         while mooses > 0:
-            mooseAmt = random.randint(1, min(10, mooses))
+            mooseAmt = random.randint(1, min(3, mooses))
             mooses -= mooseAmt
             territoryRadius = random.uniform(territoryMin, territoryMax)
             xOffset = random.uniform(territoryRadius, width-territoryRadius)

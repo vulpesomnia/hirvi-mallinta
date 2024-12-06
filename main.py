@@ -13,7 +13,7 @@ game_clock = pygame.time.Clock()
 previous_frametime = pygame.time.get_ticks() 
 accumulated_frametime = 0
 
-map = map.Map(25000 * settings.PIXELS_PER_METER, 12500 * settings.PIXELS_PER_METER, 1100)
+map = map.Map(25000 * settings.PIXELS_PER_METER, 12500 * settings.PIXELS_PER_METER, 110)
 drone = drone.Drone(50, 221 * settings.PIXELS_PER_METER)
 
 events.setup_events()
