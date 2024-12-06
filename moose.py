@@ -1,6 +1,8 @@
 import pygame, random
 import settings, object
 
+epsilonVector = pygame.Vector2(0.0001, 0.0001)
+
 class Moose(object.GameObject):# Korkeus, pituus, reviiri
     def __init__(self, location, height, length, territory):
         super().__init__()
@@ -16,8 +18,14 @@ class Moose(object.GameObject):# Korkeus, pituus, reviiri
 
     def fixed_tick(self, dt):
         self.time += dt
+        self.velocity = pygame.Vector2.normalize(self.targetLocation - self.location + epsilonVector) * self.speed * settings.PIXELS_PER_METER * settings.TICK_SPEED
         if settings.getDistance(self.location, self.targetLocation) >= 1 * settings.PIXELS_PER_METER:
             self.location += self.velocity * dt
         else:
-            self.targetLocation = pygame.Vector2(self.location.x + random.uniform(-5 * settings.PIXELS_PER_METER, 5 * settings.PIXELS_PER_METER), self.location.y + random.uniform(-5 * settings.PIXELS_PER_METER, 5 * settings.PIXELS_PER_METER))
-            self.velocity = pygame.Vector2.normalize(self.targetLocation - self.location) * self.speed * settings.PIXELS_PER_METER * settings.TICK_SPEED
+            randDir = pygame.Vector2.normalize(pygame.Vector2(random.uniform(-1, 1), random.uniform(-1, 1)) + epsilonVector)
+            self.targetLocation = self.territory.location + randDir * random.uniform(0, self.territory.radius)
+        for i in range(len(self.territory.population)):
+            if self.territory.population[i] != self:
+                if settings.getDistance(self.territory.population[i].location, self.location) <= 5 * settings.PIXELS_PER_METER:
+                    dir = pygame.Vector2.normalize(self.territory.population[i].location - self.location + epsilonVector)
+                    self.territory.population[i].location += dir * 2 * settings.PIXELS_PER_METER
