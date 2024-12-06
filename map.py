@@ -15,7 +15,19 @@ class Map():
         while mooses > 0:
             mooseAmt = random.randint(1, min(3, mooses))
             mooses -= mooseAmt
-            territoryRadius = random.uniform(territoryMin, territoryMax)
-            xOffset = random.uniform(territoryRadius, width-territoryRadius)
-            yOffset = random.uniform(territoryRadius, height-territoryRadius)
-            self.territories.append(territory.Territory(pygame.Vector2(xOffset, yOffset), territoryRadius * settings.PIXELS_PER_METER, mooseAmt))
+            success = False
+            while not success:
+                territoryRadius = random.uniform(territoryMin, territoryMax)
+                xOffset = random.uniform(territoryRadius, width-territoryRadius)
+                yOffset = random.uniform(territoryRadius, height-territoryRadius)
+                position = pygame.Vector2(xOffset, yOffset)
+                if len(self.territories) == 0:
+                    self.territories.append(territory.Territory(position, territoryRadius * settings.PIXELS_PER_METER, mooseAmt))
+                    success = True
+                else:
+                    for i in range(len(self.territories)):
+                        if settings.getSquareDistance(position, self.territories[i].location) < (territoryRadius + self.territories[i].radius)**2:
+                            break
+                        elif i == len(self.territories)-1:
+                            self.territories.append(territory.Territory(position, territoryRadius * settings.PIXELS_PER_METER, mooseAmt))
+                            success = True
