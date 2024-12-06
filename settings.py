@@ -39,4 +39,5 @@ def screen_to_world(screen_location):
 def world_to_screen(world_location):
     return pygame.math.Vector2(round(world_location[0] * SCREEN_RESIZE_FACTOR), round(world_location[1] * SCREEN_RESIZE_FACTOR))
 
-
+def getDistance(pos1, pos2):
+    return math.sqrt((pos1.x-pos2.x)**2 + (pos1.y-pos2.y)**2)
