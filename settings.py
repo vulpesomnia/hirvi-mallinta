@@ -1,13 +1,13 @@
-import math, pygame
+import math, pygame, camera
 
 physics_pool = []
 render_pool = []
 
-SCREEN_WIDTH = 960
-SCREEN_HEIGHT = 540
+SCREEN_WIDTH = 1280 # 960
+SCREEN_HEIGHT = 720 # 540
 
 SCREEN_RESIZE_FACTOR = 1 
-PIXELS_PER_METER = 2 #Pixels per meter
+PIXELS_PER_METER = 1 #Pixels per meter
 
 MAX_FPS = 60
 TICK_SPEED = (1 / 60) #Fixed value do not touch!
@@ -15,6 +15,7 @@ TICK_SPEED = (1 / 60) #Fixed value do not touch!
 WHITE = (255, 255 ,255)
 BLACK = (0, 0, 0)
 
+camera = camera.Camera()
 screen = None
 rendering_frame = None
 scaled_size = (SCREEN_WIDTH, SCREEN_HEIGHT)

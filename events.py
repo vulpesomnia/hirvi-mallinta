@@ -10,6 +10,10 @@ def setup_events():
     ACTIVE_EVENTS = {
             (pygame.QUIT, 0) : "pygame.quit()",
             (pygame.VIDEORESIZE, 0) : "settings.screen_resize(event.h, event.w)",
+            (pygame.K_UP, 1) : "settings.camera.move(0, -1)",
+            (pygame.K_RIGHT, 1) : "settings.camera.move(1, 0)",
+            (pygame.K_DOWN, 1) : "settings.camera.move(0, 1)",
+            (pygame.K_LEFT, 1) : "settings.camera.move(-1, 0)",
             }
 
 def event_listener():

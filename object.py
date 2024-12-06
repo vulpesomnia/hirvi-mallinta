@@ -2,7 +2,7 @@ import pygame, settings
 
 class Sprite():
     def __init__(self, size, color, location):
-        self.size = pygame.Vector2(size.x, size.y)
+        self.size = size
         self.location = location
         settings.render_pool.append(self)
         self.color = color

@@ -1,5 +1,5 @@
 import pygame
-import settings, physics, rendering, camera, object, events, moose, drone, territory
+import settings, physics, rendering, events, drone, map, territory
 from pygame.locals import *
 
 pygame.init()
@@ -9,19 +9,17 @@ settings.screen = pygame.display.set_mode((settings.SCREEN_WIDTH,settings.SCREEN
 settings.rendering_frame = pygame.Surface((settings.SCREEN_WIDTH, settings.SCREEN_HEIGHT))
 game_clock = pygame.time.Clock()
 
-camera = camera.Camera()
 
 previous_frametime = pygame.time.get_ticks() 
 accumulated_frametime = 0
 
-test = territory.Territory(pygame.Vector2(settings.SCREEN_WIDTH/-4, 0), 100 * settings.PIXELS_PER_METER, 100)
-test2 = territory.Territory(pygame.Vector2(settings.SCREEN_WIDTH/4, 0), 100 * settings.PIXELS_PER_METER, 100)
+map = map.Map(25000 * settings.PIXELS_PER_METER, 12500 * settings.PIXELS_PER_METER, 1100)
 drone = drone.Drone(pygame.Vector2(0, 0), 50, 221 * settings.PIXELS_PER_METER)
+
 
 events.setup_events()
 while True:
     # - Main Physics - #
-    
     current_frametime = pygame.time.get_ticks()
     #Adds the time the previous frame took to the accumulator
     accumulated_frametime += (current_frametime - previous_frametime) / 1000.0
@@ -39,7 +37,7 @@ while True:
     settings.rendering_frame = pygame.Surface((settings.SCREEN_WIDTH, settings.SCREEN_HEIGHT))
     settings.screen.fill(settings.BLACK)
     settings.rendering_frame.fill(settings.WHITE)
-    rendering.render_all(camera.location) 
+    rendering.render_all(settings.camera.location) 
 
     # - - - - - - - - - -#
     scaled_rendering_frame = pygame.transform.scale(settings.rendering_frame, settings.scaled_size)
