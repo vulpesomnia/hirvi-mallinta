@@ -18,4 +18,5 @@ class Simulation():
         virhe = settings.MOOSE_AMOUNT - self.mooseFound
         print("VIRHE: " + str(virhe))
         print("SUHTEELLINEN VIRHE: " + str(virhe/settings.MOOSE_AMOUNT * 100) + "%")
+        return (self.time, self.cost, self.mooseFound, virhe)
 

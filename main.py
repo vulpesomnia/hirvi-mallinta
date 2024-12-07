@@ -1,4 +1,4 @@
-import pygame
+import pygame, random
 import settings, physics, rendering, events, drone, map, simulation
 from pygame.locals import *
 
@@ -62,5 +62,28 @@ for _ in range(settings.SIMULATION_AMOUNT):
 
     simulations.append(settings.currentSimulation)
     settings.currentSimulation = simulation.Simulation(settings.currentSimulation.id+1)
+data = []
+name = "output-raw-" + str(random.randint(1, 300000)) + ".txt"
+f = open("./output/" + name, "a")
+f.write("FORMAT:" + " ")
+f.write("AIKA" + " ")
+f.write("HINTA" + " ")
+f.write("HIRVIÄ LÖYTYNYT" + " ")
+f.write("VIRHE" + " ")
+f.write("SUHTEELLINEN VIRHE" + "\n")
+
 for s in simulations:
-    s.show_results()
+    data.append(s.show_results())
+    f.write(str(data[len(data)-1][0]) + " ")
+    f.write(str(data[len(data)-1][1]) + " ")
+    f.write(str(data[len(data)-1][2]) + " ")
+    f.write(str(data[len(data)-1][3]) + " ")
+    f.write(str(data[len(data)-1][3]/settings.MOOSE_AMOUNT) + "\n")
+
+    # return (self.time, self.cost, self.mooseFound, virhe)
+f.write("# - YHTEENVETO - #" + "\n")
+virhe_keskiarvo = 0
+for d in data:
+    virhe_keskiarvo += d[3]
+f.write("VIRHE KESKIARVO: " + str(virhe_keskiarvo/len(data)) + "\n")
+f.close()
