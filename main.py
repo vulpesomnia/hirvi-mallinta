@@ -27,8 +27,8 @@ def reset_simulation():
 events.setup_events()
 for _ in range(settings.SIMULATION_AMOUNT):
     reset_simulation()
-    drone = drone.Drone(50, 221 * settings.PIXELS_PER_METER, forestMap.territories, 1)
-    settings.camera.drone = drone
+    maindrone = drone.Drone(50, 221 * settings.PIXELS_PER_METER, forestMap.territories, 1)
+    settings.camera.drone = maindrone
     while True:
     # - Main Physics - #§
         current_frametime = pygame.time.get_ticks()
