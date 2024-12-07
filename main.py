@@ -27,21 +27,21 @@ def reset_simulation():
 events.setup_events()
 for _ in range(settings.SIMULATION_AMOUNT):
     reset_simulation()
-    drone = drone.Drone(50, 221 * settings.PIXELS_PER_METER, forestMap.territories, 1)
-    settings.camera.drone = drone
+    mainDrone = drone.Drone(50, 221 * settings.PIXELS_PER_METER, forestMap.territories, 1)
+    settings.camera.drone = mainDrone
     while True:
     # - Main Physics - #§
         current_frametime = pygame.time.get_ticks()
     #Adds the time the previous frame took to the accumulator
-        accumulated_frametime += (current_frametime - previous_frametime) / 1000.0# * settings.SIMULATION_SPEED
+        accumulated_frametime += (current_frametime - previous_frametime) / 1000.0
     #Prepare for next frame by setting previous frametime's timestamp
         previous_frametime = current_frametime
         events.event_listener()
-        while accumulated_frametime > settings.TICK_SPEED:# * settings.SIMULATION_SPEED:
+        while accumulated_frametime > settings.TICK_SPEED:
             physics.tick(settings.SIMULATION_SPEED)
-            accumulated_frametime -= settings.TICK_SPEED# * settings.SIMULATION_SPEED
+            accumulated_frametime -= settings.TICK_SPEED
         if accumulated_frametime > 0:
-            physics.tick(accumulated_frametime * settings.SIMULATION_SPEED /  settings.TICK_SPEED)
+            physics.tick(accumulated_frametime *settings.SIMULATION_SPEED / settings.TICK_SPEED)
             accumulated_frametime = 0
 
     #Possibly move camera position update to sync with physics update.
