@@ -16,6 +16,7 @@ class Drone(object.GameObject):
         self.sprite = object.Sprite(pygame.Vector2(self.sight, 1), (255, 0, 255, 50), self.location)
         self.territories = territories
         self.area = area
+        self.step = self.sight*settings.MAP_WIDTH*(area - 1) / (self.sight - area*settings.MAP_WIDTH)
 
     def fixed_tick(self, dt):
         #collision
@@ -48,7 +49,7 @@ class Drone(object.GameObject):
                             moose.colliding = False
 
         #movement
-        if self.direction % 2 == 0 and ((self.location[1] + self.sight/2) % self.sight < 1 or (self.location[1] + self.sight/2) % self.sight > self.sight-1):
+        if self.direction % 2 == 0 and ((self.location[1] + self.sight/2) % (self.sight + self.step) < 1 or (self.location[1] + self.sight/2) % (self.sight + self.step) > self.step + self.sight-1):
             if self.location[1] > settings.MAP_HEIGHT + self.sight/2:
                 settings.is_running = False
             self.location += 2*directions[self.direction]
