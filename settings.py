@@ -59,6 +59,34 @@ scaled_size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 screen_offset = 0
 time = hour_to_time(STARTING_TIME)
 
+f = open("parameters.txt", "r")
+i = 0
+for line in f.readlines():
+    if line[0] != "#":
+        line = line.replace("\n", "")
+        num = float(line)
+        if i == 0:
+            MOOSE_DENSITY_PER_THOUSAND_HECTARES = num
+            MOOSE_AMOUNT = int(MAP_HEIGHT / 1000 * MAP_WIDTH / 1000 * 100 * MOOSE_DENSITY_PER_THOUSAND_HECTARES / 1000)
+        elif i == 1:
+            MOOSE_SPEED = num
+        elif i == 2:
+            ACTIVE_REST = num
+        elif i == 3:
+            LESS_ACTIVE_REST = num
+        elif i == 4:
+            MIN_TERRITORY_RADIUS = num
+            MAX_TERRITORY_RADIUS = num+400
+        elif i == 5:
+            DRONE_AMOUNT = num
+        elif i == 6:
+            DRONE_SPEED = num
+        elif i == 7:
+            STARTING_TIME = num
+        i += 1
+
+
+
 def screen_resize(event_height, event_width):
     global scaled_size, screen_offset, screen
     aspect_ratio = 16/9
