@@ -20,7 +20,7 @@ while True:
     # - Main Physics - #
     current_frametime = pygame.time.get_ticks()
     #Adds the time the previous frame took to the accumulator
-    accumulated_frametime += (current_frametime - previous_frametime) / 1000.0
+    accumulated_frametime += (current_frametime - previous_frametime) / 1000.0 * settings.SIMULATION_SPEED
     #Prepare for next frame by setting previous frametime's timestamp
     previous_frametime = current_frametime
     events.event_listener()
