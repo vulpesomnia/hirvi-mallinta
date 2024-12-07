@@ -7,6 +7,10 @@ def time_to_hour(time):
     time = time / 60 / 3600
     return (math.floor(time), (time-math.floor(time))*60)
 
+def toggle_drone_follow():
+    global follow_drone
+    follow_drone = not follow_drone
+
 physics_pool = []
 render_pool = []
 
@@ -64,6 +68,7 @@ scaled_size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 screen_offset = 0
 time = hour_to_time(STARTING_TIME)
 is_running = True
+follow_drone = False
 
 f = open("parameters.txt", "r")
 i = 0

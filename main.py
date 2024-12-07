@@ -28,6 +28,7 @@ events.setup_events()
 for _ in range(settings.SIMULATION_AMOUNT):
     reset_simulation()
     drone = drone.Drone(50, 221 * settings.PIXELS_PER_METER, forestMap.territories, 100)
+    settings.camera.drone = drone
     while True:
     # - Main Physics - #
         current_frametime = pygame.time.get_ticks()

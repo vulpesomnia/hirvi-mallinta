@@ -14,6 +14,7 @@ def setup_events():
             (pygame.K_RIGHT, 1) : "settings.camera.move(1, 0)",
             (pygame.K_DOWN, 1) : "settings.camera.move(0, 1)",
             (pygame.K_LEFT, 1) : "settings.camera.move(-1, 0)",
+            (pygame.K_e, 1) : "settings.toggle_drone_follow()",
             }
 
 def event_listener():
