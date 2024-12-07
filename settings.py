@@ -10,6 +10,10 @@ def time_to_hour(time):
 def toggle_drone_follow():
     global follow_drone
     follow_drone = not follow_drone
+    if follow_drone:
+        camera.location = camera.drone.location
+    else:
+        camera.location = pygame.Vector2(camera.location.x, camera.location.y)
 
 physics_pool = []
 render_pool = []

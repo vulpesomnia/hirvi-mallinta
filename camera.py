@@ -11,7 +11,5 @@ class Camera(object.GameObject):
 
 
     def move(self, x, y):
-        if settings.follow_drone:
-            self.location = self.drone.location
-        else:
-            self.location += pygame.Vector2(x, y) * cameraSpeed
+        if not settings.follow_drone:
+           self.location += pygame.Vector2(x, y) * cameraSpeed
