@@ -35,7 +35,7 @@ class Moose(object.GameObject):# Korkeus, pituus, reviiri
                     self.location += self.velocity * dt
                 else:
                     randDir = pygame.Vector2.normalize(pygame.Vector2(random.uniform(-1, 1), random.uniform(-1, 1)) + epsilonVector)
-                    self.targetLocation = self.territory.location + randDir * random.uniform(0, self.territory.radius)
+                    self.targetLocation = self.territory.location + randDir * random.uniform(0, self.territory.radius - 5 * settings.PIXELS_PER_METER)
             for i in range(len(self.territory.population)):
                 if self.territory.population[i] != self:
                     if settings.getSquareDistance(self.territory.population[i].location, self.location) <= 5**2 * settings.PIXELS_PER_METER:
