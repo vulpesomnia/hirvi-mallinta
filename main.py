@@ -3,10 +3,11 @@ import settings, physics, rendering, events, drone, map, territory
 from pygame.locals import *
 
 pygame.init()
-pygame.display.set_caption("Hirvimallinnusohjelma")
 # - - - - - -#
-settings.screen = pygame.display.set_mode((settings.SCREEN_WIDTH,settings.SCREEN_HEIGHT), pygame.RESIZABLE)
-settings.rendering_frame = pygame.Surface((settings.SCREEN_WIDTH, settings.SCREEN_HEIGHT))
+if settings.TOGGLE_RENDERING:
+    pygame.display.set_caption("Hirvimallinnusohjelma")
+    settings.screen = pygame.display.set_mode((settings.SCREEN_WIDTH,settings.SCREEN_HEIGHT), pygame.RESIZABLE)
+    settings.rendering_frame = pygame.Surface((settings.SCREEN_WIDTH, settings.SCREEN_HEIGHT))
 game_clock = pygame.time.Clock()
 
 previous_frametime = pygame.time.get_ticks() 
