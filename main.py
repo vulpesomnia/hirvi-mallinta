@@ -13,15 +13,15 @@ game_clock = pygame.time.Clock()
 previous_frametime = pygame.time.get_ticks() 
 accumulated_frametime = 0
 
-map = map.Map(25000 * settings.PIXELS_PER_METER, 12500 * settings.PIXELS_PER_METER, 110)
-drone = drone.Drone(50, 221 * settings.PIXELS_PER_METER)
+map = map.Map(12500 * settings.PIXELS_PER_METER, 25000 * settings.PIXELS_PER_METER, 110)
+drone = drone.Drone(50, 221 * settings.PIXELS_PER_METER, map.territories)
 
 events.setup_events()
 while True:
     # - Main Physics - #
     current_frametime = pygame.time.get_ticks()
     #Adds the time the previous frame took to the accumulator
-    accumulated_frametime += (current_frametime - previous_frametime) / 1000.0
+    accumulated_frametime += (current_frametime - previous_frametime) / 1000.0 * 20
     #Prepare for next frame by setting previous frametime's timestamp
     previous_frametime = current_frametime
     events.event_listener()
