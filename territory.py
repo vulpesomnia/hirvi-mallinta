@@ -12,9 +12,9 @@ class Territory(object.GameObject):
         for n in range(mooseNumber):
             xOffset = pygame.Vector2(n*5*settings.PIXELS_PER_METER, 0)
             if n > 0:
-                self.population.append(moose.Moose(self.population[0].location - xOffset, random.uniform(settings.MIN_MOOSE_HEIGHT, settings.MAX_MOOSE_HEIGHT), random.uniform(settings.MIN_MOOSE_LENGTH, settings.MAX_MOOSE_LENGTH) * settings.PIXELS_PER_METER, self, self.population[n-1]))
+                self.population.append(moose.Moose(self.population[0].location - xOffset, random.uniform(settings.MIN_MOOSE_HEIGHT, settings.MAX_MOOSE_HEIGHT), random.uniform(settings.MIN_MOOSE_LENGTH, settings.MAX_MOOSE_LENGTH) * settings.PIXELS_PER_METER, self, self.population[n-1], 100))
             else:
-                self.population.append(moose.Moose(self.location + randDir , random.uniform(1.7, 2.1), random.uniform(2.5, 3) * settings.PIXELS_PER_METER, self))
+                self.population.append(moose.Moose(self.location + randDir , random.uniform(1.7, 2.1), random.uniform(2.5, 3) * settings.PIXELS_PER_METER, self, 100))
         self.sprite = object.Sprite(pygame.Vector2(radius*2, radius*2), (0, 255, 126, 50), self.location)
         pygame.draw.circle(self.sprite.rect, (255, 255, 255), (radius, radius), radius)
 
