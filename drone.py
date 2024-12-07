@@ -20,21 +20,31 @@ class Drone(object.GameObject):
         #collision
         for territory in self.territories:
             if self.direction % 2 == 0:
-                distance = max(territory.location[1], self.location[1]) - min(territory.location[1], self.location[1])
-                if distance < territory.radius: #and (territory.location[0] - territory.radius > self.location[0] + self.sight/2 or territory.location[0] + territory.radius > self.location[0] - self.sight/2):
+                distance_y = max(territory.location[1], self.location[1]) - min(territory.location[1], self.location[1])
+                distance_x = max(territory.location[0], self.location[0]) - min(territory.location[0], self.location[0])
+                if distance_y < territory.radius and (distance_x < territory.radius + self.sight/2):
                     for moose in territory.population:
-                        if not moose.colliding and self.sprite.collisionBox.colliderect(moose.sprite.collisionBox):
+                        distance_y = max(moose.location[1], self.location[1]) - min(moose.location[1], self.location[1])
+                        distance_x = max(moose.location[0], self.location[0]) - min(moose.location[0], self.location[0])
+                        if not moose.colliding and (distance_y < 2 and distance_x < self.sight/2 + 2):
+                            print(self.mooses, moose.location, self.location)
                             moose.colliding = True
                             self.mooses += 1
-                            print(self.mooses)
+                        elif moose.colliding and (distance_y > 2 and distance_x > self.sight/2 + 2):
+                            moose.colliding = False
             else:
-                distance = max(territory.location[1], self.location[1]) - min(territory.location[1], self.location[1])
-                if distance < territory.radius: #and (territory.location[1] - territory.radius > self.location[1] + self.sight/2 or territory.location[1] + territory.radius > self.location[1] - self.sight/2):
+                distance_y = max(territory.location[1], self.location[1]) - min(territory.location[1], self.location[1])
+                distance_x = max(territory.location[0], self.location[0]) - min(territory.location[0], self.location[0])
+                if distance_x < territory.radius and (distance_y < territory.radius + self.sight/2):
                     for moose in territory.population:
-                        if not moose.colliding and self.sprite.collisionBox.colliderect(moose.sprite.collisionBox):
+                        distance_y = max(moose.location[1], self.location[1]) - min(moose.location[1], self.location[1])
+                        distance_x = max(moose.location[0], self.location[0]) - min(moose.location[0], self.location[0])
+                        if not moose.colliding and (distance_y < self.sight/2 + 2 and distance_x < 2):
                             moose.colliding = True
                             self.mooses += 1
-                            print(self.mooses)
+                            print(self.mooses, moose.location, self.location)
+                        elif moose.colliding and (distance_y > 2 and distance_x > self.sight/2 + 2):
+                            moose.colliding = False
 
         #movement
         if self.direction % 2 == 0 and ((self.location[1] + self.sight/2) % self.sight < 1 or (self.location[1] + self.sight/2) % self.sight > self.sight-1):
@@ -42,12 +52,12 @@ class Drone(object.GameObject):
             self.direction += 1
             self.direction %= 4
             self.velocity = directions[self.direction] * self.speed * settings.PIXELS_PER_METER * settings.TICK_SPEED
-            self.sprite = object.Sprite(pygame.Vector2(self.sight, 1), (255, 0, 255, 50), self.location)
+            self.sprite = object.Sprite(pygame.Vector2(1, self.sight), (255, 0, 255, 50), self.location)
         elif self.direction % 2 == 1 and (self.location[0] > settings.PIXELS_PER_METER * settings.MAP_WIDTH - self.sight/2 or self.location[0] < self.sight/2):
             self.location -= self.velocity
             self.direction += 1
             self.direction %= 4
             self.velocity = directions[self.direction] * self.speed * settings.PIXELS_PER_METER * settings.TICK_SPEED
-            self.sprite = object.Sprite(pygame.Vector2(1, self.sight), (255, 0, 255, 50), self.location)
+            self.sprite = object.Sprite(pygame.Vector2(self.sight, 1), (255, 0, 255, 50), self.location)
         else:
             self.location += self.velocity * dt
