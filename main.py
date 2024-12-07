@@ -9,11 +9,10 @@ settings.screen = pygame.display.set_mode((settings.SCREEN_WIDTH,settings.SCREEN
 settings.rendering_frame = pygame.Surface((settings.SCREEN_WIDTH, settings.SCREEN_HEIGHT))
 game_clock = pygame.time.Clock()
 
-
 previous_frametime = pygame.time.get_ticks() 
 accumulated_frametime = 0
 
-map = map.Map(25000 * settings.PIXELS_PER_METER, 12500 * settings.PIXELS_PER_METER, 110)
+map = map.Map(settings.MAP_WIDTH * settings.PIXELS_PER_METER, settings.MAP_HEIGHT * settings.PIXELS_PER_METER, settings.MOOSE_AMOUNT)
 drone = drone.Drone(50, 221 * settings.PIXELS_PER_METER)
 
 events.setup_events()

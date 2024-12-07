@@ -6,7 +6,7 @@ territoryMin = 200
 territoryMax = 500
 
 class Map():
-    def __init__(self, height, width, mooses):
+    def __init__(self, width, height, mooses):
         # Create territories around and create lake
         self.height = height
         self.width = width
