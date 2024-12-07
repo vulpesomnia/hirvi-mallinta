@@ -11,7 +11,7 @@ class Simulation():
         print("- - > SIMULAATIO " + str(self.id) + " < - -")
         timeHours = math.floor(self.time /3600)
         timeMinutes =  (self.time/3600 - timeHours) * 60
-        print("AIKA: " + str(timeHours) + "h " + str(timeMinutes) + "m")
+        print("AIKA: " + str(timeHours) + "h " + str(round(timeMinutes, 2)) + "m")
         print("KALUSTEHINTA: " + str(self.cost))
         self.cost += timeHours*settings.DRONE_HOURLY_COST + timeMinutes/60*settings.DRONE_HOURLY_COST
         print("HINTA YHTEENSÄ: " + str(self.cost))

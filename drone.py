@@ -61,8 +61,6 @@ class Drone(object.GameObject):
             else:
                 self.length += remainder - self.sight/2
             settings.currentSimulation.time = (self.length/settings.PIXELS_PER_METER) / self.speed
-            print(self.length, "/", settings.PIXELS_PER_METER, "/", self.speed)
-            print(self.length, settings.currentSimulation.time)
             settings.is_running = False
         elif self.direction % 2 == 0 and (remainder < self.width/2 or remainder > self.step + self.sight - self.width/2):
             self.direction += 1
