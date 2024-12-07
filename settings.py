@@ -3,6 +3,10 @@ import math, pygame, camera
 def hour_to_time(hour):
     return hour * 3600 * MAX_FPS
 
+def time_to_hour(time):
+    time = time / 60 / 3600
+    return (math.floor(time), (time-math.floor(time))*60)
+
 physics_pool = []
 render_pool = []
 
@@ -45,9 +49,9 @@ DRONE_AMOUNT = 1
 DRONE_SPEED = 0
 DRONE_HOURLY_COST = 0
 
-INVESTMENT_COSTS = 19000
+INVESTMENT_COSTS = 10000 + 2000
 
-SIMULATION_SPEED = 20
+SIMULATION_SPEED = 1
 SIMULATION_AMOUNT = 1
 
 TOGGLE_RENDERING = True
