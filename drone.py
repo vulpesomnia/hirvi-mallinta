@@ -32,6 +32,7 @@ class Drone(object.GameObject):
                             print(self.mooses, moose.location, self.location)
                             moose.colliding = True
                             self.mooses += 1
+                            settings.currentSimulation.mooseFound += 1
                         elif moose.colliding and (distance_y > 2 and distance_x > self.sight/2 + 2):
                             moose.colliding = False
             else:

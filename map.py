@@ -1,4 +1,3 @@
-
 import pygame, random
 import settings, object, moose, territory
 

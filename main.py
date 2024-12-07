@@ -1,5 +1,5 @@
 import pygame
-import settings, physics, rendering, events, drone, map
+import settings, physics, rendering, events, drone, map, simulation
 from pygame.locals import *
 
 pygame.init()
@@ -14,6 +14,8 @@ previous_frametime = pygame.time.get_ticks()
 accumulated_frametime = 0
 
 forestMap = None
+settings.currentSimulation = simulation.Simulation(1)
+simulations = []
 
 def reset_simulation():
     global forestMap
@@ -56,3 +58,8 @@ for _ in range(settings.SIMULATION_AMOUNT):
             game_clock.tick(settings.MAX_FPS)
         if not settings.is_running:
             break
+
+    simulations.append(settings.currentSimulation)
+    settings.currentSimulation = simulation.Simulation(settings.currentSimulation.id+1)
+for s in simulations:
+    s.show_results()
