@@ -20,7 +20,7 @@ while True:
     # - Main Physics - #
     current_frametime = pygame.time.get_ticks()
     #Adds the time the previous frame took to the accumulator
-    accumulated_frametime += (current_frametime - previous_frametime) / 1000.0
+    accumulated_frametime += (current_frametime - previous_frametime) / 1000.0 * 50
     #Prepare for next frame by setting previous frametime's timestamp
     previous_frametime = current_frametime
     events.event_listener()
@@ -32,14 +32,15 @@ while True:
         accumulated_frametime = 0
 
     #Possibly move camera position update to sync with physics update.
-    settings.rendering_frame = pygame.Surface((settings.SCREEN_WIDTH, settings.SCREEN_HEIGHT))
-    settings.screen.fill(settings.BLACK)
-    settings.rendering_frame.fill(settings.WHITE)
-    rendering.render_all(settings.camera.location) 
+    if settings.TOGGLE_RENDERING:
+        settings.rendering_frame = pygame.Surface((settings.SCREEN_WIDTH, settings.SCREEN_HEIGHT))
+        settings.screen.fill(settings.BLACK)
+        settings.rendering_frame.fill(settings.WHITE)
+        rendering.render_all(settings.camera.location) 
 
     # - - - - - - - - - -#
-    scaled_rendering_frame = pygame.transform.scale(settings.rendering_frame, settings.scaled_size)
+        scaled_rendering_frame = pygame.transform.scale(settings.rendering_frame, settings.scaled_size)
 
-    settings.screen.blit(scaled_rendering_frame, (settings.screen_offset, 0))
-    pygame.display.flip()
+        settings.screen.blit(scaled_rendering_frame, (settings.screen_offset, 0))
+        pygame.display.flip()
     game_clock.tick(settings.MAX_FPS)
