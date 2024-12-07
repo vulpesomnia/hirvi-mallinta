@@ -1,4 +1,4 @@
-
+import math
 import settings
 class Simulation():
     def __init__(self, id):
@@ -9,10 +9,11 @@ class Simulation():
 
     def show_results(self):
         print("- - > SIMULAATIO " + str(self.id) + " < - -")
-        realTime = settings.time_to_hour(self.time)
-        print("AIKA: " + str(realTime[0]) + "h " + str(realTime[1]) + "m")
+        timeHours = math.floor(self.time /3600)
+        timeMinutes =  (self.time/3600 - timeHours) * 60
+        print("AIKA: " + str(timeHours) + "h " + str(round(timeMinutes, 2)) + "m")
         print("KALUSTEHINTA: " + str(self.cost))
-        self.cost += realTime[0]*settings.DRONE_HOURLY_COST + realTime[1]/60*settings.DRONE_HOURLY_COST
+        self.cost += timeHours*settings.DRONE_HOURLY_COST + timeMinutes/60*settings.DRONE_HOURLY_COST
         print("HINTA YHTEENSÄ: " + str(self.cost))
         print("HIRVIÄ LÖYDETTY: " + str(self.mooseFound) + "/" + str(settings.MOOSE_AMOUNT))
         virhe = settings.MOOSE_AMOUNT - self.mooseFound

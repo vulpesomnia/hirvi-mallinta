@@ -19,6 +19,7 @@ class Drone(object.GameObject):
         self.territories = territories
         self.area = area
         self.step = self.sight*settings.MAP_WIDTH*(area - 1) / (self.sight - area*settings.MAP_WIDTH)
+        self.length = -self.step - self.sight/2
 
     def fixed_tick(self, dt):
         #collision
@@ -55,6 +56,11 @@ class Drone(object.GameObject):
         #movement
         remainder = (self.location[1] - self.sight/2) % (self.sight + self.step)
         if self.location[1] > settings.MAP_HEIGHT + self.sight/2:
+            if remainder < self.sight/2:
+                self.length += remainder + self.step + self.sight/2
+            else:
+                self.length += remainder - self.sight/2
+            settings.currentSimulation.time = (self.length/settings.PIXELS_PER_METER) / self.speed
             settings.is_running = False
         elif self.direction % 2 == 0 and (remainder < self.width/2 or remainder > self.step + self.sight - self.width/2):
             self.direction += 1
@@ -62,6 +68,7 @@ class Drone(object.GameObject):
             self.direction %= 4
             self.velocity = directions[self.direction] * self.speed * settings.PIXELS_PER_METER * settings.TICK_SPEED
             self.sprite = object.Sprite(pygame.Vector2(self.width, self.sight), (255, 0, 255, 50), self.location)
+            self.length += self.step + self.sight
         elif self.direction % 2 == 1 and (self.location[0] > settings.PIXELS_PER_METER * settings.MAP_WIDTH - self.sight/2 or self.location[0] < self.sight/2):
             if self.location[0] > settings.PIXELS_PER_METER * settings.MAP_WIDTH / 2:
                 self.location[0] = settings.PIXELS_PER_METER * settings.MAP_WIDTH - self.sight/2 -1
@@ -71,5 +78,6 @@ class Drone(object.GameObject):
             self.direction %= 4
             self.velocity = directions[self.direction] * self.speed * settings.PIXELS_PER_METER * settings.TICK_SPEED
             self.sprite = object.Sprite(pygame.Vector2(self.sight, self.width), (255, 0, 255, 50), self.location)
+            self.length += settings.MAP_WIDTH - self.sight
         else:
             self.location += self.velocity * dt
