@@ -20,7 +20,7 @@ class Moose(object.GameObject):# Korkeus, pituus, reviiri
         else:
             self.targetLocation = location
         self.time = 0
-        self.speed = 2
+        self.speed = settings.MOOSE_SPEED
 
     def fixed_tick(self, dt):
         if not self.resting:
