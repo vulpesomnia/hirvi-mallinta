@@ -47,7 +47,7 @@ DRONE_HOURLY_COST = 0
 
 INVESTMENT_COSTS = 19000
 
-SIMULATION_SPEED = 1
+SIMULATION_SPEED = 20
 SIMULATION_AMOUNT = 1
 
 TOGGLE_RENDERING = True
@@ -58,6 +58,7 @@ rendering_frame = None
 scaled_size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 screen_offset = 0
 time = hour_to_time(STARTING_TIME)
+is_running = True
 
 f = open("parameters.txt", "r")
 i = 0

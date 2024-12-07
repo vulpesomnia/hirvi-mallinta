@@ -4,7 +4,7 @@ import settings, object
 directions = [pygame.Vector2(0,1), pygame.Vector2(-1,0), pygame.Vector2(0,1), pygame.Vector2(1,0)]
 
 class Drone(object.GameObject):
-    def __init__(self, speed, height, territories):
+    def __init__(self, speed, height, territories, area):
         super().__init__()
         self.sight = 400
         self.location = pygame.Vector2(self.sight/2 + 1, 1)
@@ -15,6 +15,7 @@ class Drone(object.GameObject):
         self.mooses = 0
         self.sprite = object.Sprite(pygame.Vector2(self.sight, 1), (255, 0, 255, 50), self.location)
         self.territories = territories
+        self.area = area
 
     def fixed_tick(self, dt):
         #collision
@@ -48,6 +49,8 @@ class Drone(object.GameObject):
 
         #movement
         if self.direction % 2 == 0 and ((self.location[1] + self.sight/2) % self.sight < 1 or (self.location[1] + self.sight/2) % self.sight > self.sight-1):
+            if self.location[1] > settings.MAP_HEIGHT + self.sight/2:
+                settings.is_running = False
             self.location += 2*directions[self.direction]
             self.direction += 1
             self.direction %= 4
