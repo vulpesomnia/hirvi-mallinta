@@ -1,5 +1,5 @@
 import pygame, random
-import settings, physics, rendering, events, drone, map, simulation
+import settings, physics, rendering, events, drone, map, simulation, territory
 from pygame.locals import *
 
 pygame.init()
@@ -27,6 +27,7 @@ def reset_simulation():
 events.setup_events()
 for _ in range(settings.SIMULATION_AMOUNT):
     reset_simulation()
+    territore = territory.Territory(pygame.Vector2(500, 500), 500, 10)
     mainDrone = drone.Drone(50, 221 * settings.PIXELS_PER_METER, forestMap.territories, 1)
     settings.camera.drone = mainDrone
     while True:
@@ -64,7 +65,7 @@ for _ in range(settings.SIMULATION_AMOUNT):
     settings.currentSimulation = simulation.Simulation(settings.currentSimulation.id+1)
 data = []
 name = "output-raw-" + str(random.randint(1, 300000)) + ".txt"
-f = open("./output/" + name, "a")
+f = open("../output/" + name, "a")
 f.write("FORMAT:" + " ")
 f.write("AIKA" + " ")
 f.write("HINTA" + " ")

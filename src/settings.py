@@ -58,10 +58,10 @@ DRONE_HOURLY_COST = 100
 
 INVESTMENT_COSTS = 10000 + 2000
 
-SIMULATION_SPEED = 600
-SIMULATION_AMOUNT = 2
+SIMULATION_SPEED = 10
+SIMULATION_AMOUNT = 10
 
-TOGGLE_RENDERING = False
+TOGGLE_RENDERING = True
 
 camera = camera.Camera()
 currentSimulation = None
@@ -73,7 +73,7 @@ time = hour_to_time(STARTING_TIME)
 is_running = True
 follow_drone = False
 
-f = open("parameters.txt", "r")
+f = open("../parameters.txt", "r")
 i = 0
 for line in f.readlines():
     if line[0] != "#":
