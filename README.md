@@ -31,7 +31,8 @@ The simulation was programmed using Python and Pygame. It has built-in time, phy
 
 ## Running the Simulation
 The assumption is that a manned drone costs 100e/h and the investment costs are around 12000e.
-After simulation the program outputs a list of useful statistics.
+After simulation the program outputs a list of useful statistics. If rendering is enabled you can
+move around the simulation using the arrow keys. Pressing ``e`` will lock your view to the drone.
 
 ### Parameters
 Parameters can be changed in the ``parameters.txt`` file. There are currenlty 7 parameters.
