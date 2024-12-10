@@ -59,12 +59,12 @@ Parameters can be changed in the ``parameters.txt`` file. There are currenlty 7 
   Modified default parameters in the <code>src/settings.py</code> will be
   overwritten by <code>parameters.txt</code>.
   <ul>
-    <li><h3>MAP_HEIGHT & MAP_WIDTH</h3></li>
-    <li><h3>PIXELS_PER_METER</h3></li>
-    <li><h3>SCREEN_HEIGHT & SCREEN_WIDTH</h3></li>
-    <li><h3>SIMULATION_SPEED</h3></li>
-    <li><h3>SIMULATION_AMOUNT</h3></li>
-    <li><h3>TOGGLE_RENDERING</h3></li>
+    <li><h4>MAP_HEIGHT & MAP_WIDTH</h4></li>
+    <li><h4>PIXELS_PER_METER</h4></li>
+    <li><h4>SCREEN_HEIGHT & SCREEN_WIDTH</h4></li>
+    <li><h4>SIMULATION_SPEED</h4></li>
+    <li><h4>SIMULATION_AMOUNT</h4></li>
+    <li><h4>TOGGLE_RENDERING</h4></li>
   </ul>
 </details>
 
@@ -74,6 +74,11 @@ Parameters can be changed in the ``parameters.txt`` file. There are currenlty 7 
 3. Navigate into the source folder.
 4. Run ``python main.py``
 
-### Acknowledgements
-- [Lyydia Lehtinen](https://github.com/CalsiumOksidi) 
-- [Tommy Kroon](https://github.com/vulpesomnia)
+## License
+This project is licensed under the [MIT License](https://github.com/vulpesomnia/hirvi-mallinta/blob/main/LICENSE). <br />
+Please see the ``LICENSE`` file for more information.
+
+## Acknowledgements
+- **Programming & Designing:**
+    - [Tommy Kroon](https://github.com/vulpesomnia)
+    - [Lyydia Lehtinen](https://github.com/CalsiumOksidi) 
