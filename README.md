@@ -81,4 +81,6 @@ Please see the ``LICENSE`` file for more information.
 ## Acknowledgements
 - **Programming & Designing:**
     - [Tommy Kroon](https://github.com/vulpesomnia)
-    - [Lyydia Lehtinen](https://github.com/CalsiumOksidi) 
+    - [Lyydia Lehtinen](https://github.com/CalsiumOksidi)
+- **Design & Documentation:**
+    - Maria Yumashev
