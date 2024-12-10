@@ -1,5 +1,7 @@
 import pygame
-import settings, object
+
+import settings
+import object
 
 cameraSpeed = 100
 class Camera(object.GameObject):
@@ -7,8 +9,6 @@ class Camera(object.GameObject):
         super().__init__()
         self.location = pygame.Vector2(settings.SCREEN_WIDTH/2, settings.SCREEN_HEIGHT/2)
         self.drone = None
-        
-
 
     def move(self, x, y):
         if not settings.follow_drone:

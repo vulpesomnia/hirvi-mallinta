@@ -1,4 +1,6 @@
-import pygame, settings
+import pygame
+
+import settings
 
 class Sprite():
     def __init__(self, size, color, location):

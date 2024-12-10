@@ -1,7 +1,8 @@
-
-import pygame, settings
+import pygame
 
 from pygame.locals import * 
+
+import settings
 
 ACTIVE_EVENTS = {}
 

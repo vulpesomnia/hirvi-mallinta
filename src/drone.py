@@ -1,6 +1,7 @@
 import pygame
-import settings, object
-from math import floor
+
+import settings
+import object
 
 directions = [pygame.Vector2(0,1), pygame.Vector2(-1,0), pygame.Vector2(0,1), pygame.Vector2(1,0)]
 
@@ -10,7 +11,7 @@ class Drone(object.GameObject):
         self.sight = 400
         self.location = pygame.Vector2(self.sight/2 + 1, 0)
         self.direction = 2
-        self.speed = settings.DRONE_SPEED #m/s
+        self.speed = speed
         self.velocity = directions[self.direction] * self.speed * settings.PIXELS_PER_METER * settings.TICK_SPEED
         self.height = height
         self.width = settings.SIMULATION_SPEED
@@ -22,7 +23,7 @@ class Drone(object.GameObject):
         self.length = -self.step - self.sight/2
 
     def fixed_tick(self, dt):
-        #collision
+        # Collision Detection
         for territory in self.territories:
             if self.direction % 2 == 0:
                 distance_y = max(territory.location[1], self.location[1]) - min(territory.location[1], self.location[1])
@@ -53,7 +54,7 @@ class Drone(object.GameObject):
                         elif moose.colliding and (distance_y > self.width/2 + 2 and distance_x > self.sight/2 + 2):
                             moose.colliding = False
 
-        #movement
+        # Movement
         remainder = (self.location[1] - self.sight/2) % (self.sight + self.step)
         if self.location[1] > settings.MAP_HEIGHT + self.sight/2:
             if remainder < self.sight/2:

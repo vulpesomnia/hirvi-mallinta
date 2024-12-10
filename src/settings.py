@@ -1,4 +1,8 @@
-import math, pygame, camera
+import pygame
+import math
+
+import camera
+
 def hour_to_time(hour): 
     return hour * 3600 * MAX_FPS 
 
@@ -14,27 +18,22 @@ def toggle_drone_follow():
     else:
         camera.location = pygame.Vector2(camera.location.x, camera.location.y)
 
-physics_pool = []
-render_pool = []
 
-SCREEN_WIDTH = 1280 # 960
-SCREEN_HEIGHT = 720 # 540
+# Constants and parameters
+SCREEN_WIDTH = 1280
+SCREEN_HEIGHT = 720
 
 MAP_HEIGHT = 25000
 MAP_WIDTH = 12500
 
-SCREEN_RESIZE_FACTOR = 1 
-PIXELS_PER_METER = 1 #Pixels per meter
+PIXELS_PER_METER = 1 
 
 MAX_FPS = 60
-TICK_SPEED = (1 / 60) #Fixed value do not touch!
-STARTING_TIME = 9 #In hours like 6 = 6:00 and 15 = 15:00
+TICK_SPEED = (1 / 60) # NOTE: Fixed value do not touch!
+STARTING_TIME = 9 # NOTE: In hours like 6 = 6:00 and 15 = 15:00
 
 WHITE = (255, 255 ,255)
 BLACK = (0, 0, 0)
-
-MIN_MOOSE_HEIGHT = 1.7
-MAX_MOOSE_HEIGHT = 2.1
 
 MIN_MOOSE_LENGTH = 2.5
 MAX_MOOSE_LENGTH = 3
@@ -52,7 +51,6 @@ MOOSE_SPEED = 2
 MIN_TERRITORY_RADIUS = 100
 MAX_TERRITORY_RADIUS = 500
 
-DRONE_AMOUNT = 1
 DRONE_SPEED = 50
 DRONE_HOURLY_COST = 100
 
@@ -63,16 +61,24 @@ SIMULATION_AMOUNT = 10
 
 TOGGLE_RENDERING = True
 
+# Global variables
+physics_pool = []
+render_pool = []
+
 camera = camera.Camera()
-currentSimulation = None
+
 screen = None
 rendering_frame = None
 scaled_size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 screen_offset = 0
+
 time = hour_to_time(STARTING_TIME)
+currentSimulation = None
+
 is_running = True
 follow_drone = False
 
+# Reading the parameters
 f = open("../parameters.txt", "r")
 i = 0
 for line in f.readlines():
@@ -92,14 +98,10 @@ for line in f.readlines():
             MIN_TERRITORY_RADIUS = num
             MAX_TERRITORY_RADIUS = num+400
         elif i == 5:
-            DRONE_AMOUNT = num
-        elif i == 6:
             DRONE_SPEED = num
-        elif i == 7:
+        elif i == 6:
             STARTING_TIME = num
         i += 1
-
-
 
 def screen_resize(event_height, event_width):
     global scaled_size, screen_offset, screen
@@ -114,11 +116,5 @@ def screen_resize(event_height, event_width):
         screen_offset = (event_width - new_width) // 2
     scaled_size = (new_width, new_height)
 
-def screen_to_world(screen_location):
-    return screen_location / SCREEN_RESIZE_FACTOR
-
-def world_to_screen(world_location):
-    return pygame.math.Vector2(round(world_location[0] * SCREEN_RESIZE_FACTOR), round(world_location[1] * SCREEN_RESIZE_FACTOR))
-
-def getSquareDistance(pos1, pos2):
+def get_square_distance(pos1, pos2):
     return (pos1.x-pos2.x)**2 + (pos1.y-pos2.y)**2
