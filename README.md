@@ -79,7 +79,7 @@ This project is licensed under the [MIT License](https://github.com/vulpesomnia/
 Please see the ``LICENSE`` file for more information.
 
 ## Acknowledgements
-- **Programming & Designing:**
+- **Programming & Design:**
     - [Tommy Kroon](https://github.com/vulpesomnia)
     - [Lyydia Lehtinen](https://github.com/CalsiumOksidi)
 - **Design & Documentation:**
